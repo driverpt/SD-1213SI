@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadBalancer", "LoadBalancer\LoadBalancer.csproj", "{127EAAA7-FDEA-4D2D-970B-0B6D126BD8D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{FB336B2B-E085-49B1-8E66-4E9989630BF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadBalancer.Contracts", "Contracts\LoadBalancer.Contracts.csproj", "{FB336B2B-E085-49B1-8E66-4E9989630BF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Executor", "Executor\Executor.csproj", "{0D34E015-9ACB-49E3-A5AD-263763C2A366}"
 EndProject

@@ -15,23 +15,6 @@ namespace TrabalhoPratico1
 
         private static volatile int _orderNumber = 0;
 
-        public void ExecuteJob(IJob job)
-        {
-            job.Status = "Executing";
-            IExecutor executor = Executors[_orderNumber%Executors.Count];
-            Func<IJob, bool> del = executor.ExecuteJob;
-            del.BeginInvoke(job, (result) =>
-                {
-                    bool jobResult = del.EndInvoke(result);
-                    job.Status = (jobResult) ? "Success" : "Failed";
-                    if( job.Callback != null )
-                    {
-                        job.Callback();
-                    }
-                }, null);
-            JobList.Add(job);
-        }
-
         public void RegisterExecutor(IExecutor executor)
         {
             Executors.Add(executor);
@@ -40,6 +23,28 @@ namespace TrabalhoPratico1
         public void UnregisterExecutor(IExecutor executor)
         {
             Executors.Remove(executor);
+        }
+
+        public IJob ExecuteJob(string executable, string arguments, Action callback=null)
+        {
+            Console.WriteLine("New Request Arrived");
+            var job = new Job(executable, arguments, callback);
+
+            JobList.Add(job);
+            IExecutor executor = Executors[_orderNumber % Executors.Count];
+            Func<IJob, bool> del = executor.ExecuteJob;
+            job.Status = JobStatus.Executing;
+            del.BeginInvoke(job, (result) =>
+            {
+                bool jobResult = del.EndInvoke(result);
+                job.Status = (jobResult) ? JobStatus.Completed : JobStatus.Failed;
+                if (job.Callback != null)
+                {
+                    job.Callback();
+                }
+            }, null);
+            Console.WriteLine("Jobs Scheduled: {0}", JobList.Count);
+            return job;
         }
     }
 }
