@@ -10,6 +10,7 @@ namespace Contracts
         Action Callback { get; }
     }
 
+    [Serializable]
     public class Job : IJob
     {
         public string Executable { get; private set; }
@@ -26,8 +27,9 @@ namespace Contracts
         }
     }
 
+    [Serializable]
     public enum JobStatus
     {
-        New, Queued, Executing, Completed, Failed
+        New, Queued, Executing, Success, Failed
     }
 }

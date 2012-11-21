@@ -4,8 +4,8 @@ namespace Contracts
 {
     public interface ILoadBalancer
     {
-        void RegisterExecutor(IExecutor executor);
-        void UnregisterExecutor(IExecutor executor);
+        void RegisterExecutor(string executorUri);
+        void UnregisterExecutor(string executorUri);
         IJob ExecuteJob(string executable, string arguments, Action callback=null);
     }
 }

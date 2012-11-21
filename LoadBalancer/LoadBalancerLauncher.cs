@@ -14,7 +14,7 @@ namespace TrabalhoPratico1
         {
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(LoadBalancer), "LoadBalancer.soap", WellKnownObjectMode.Singleton);
             
-            //RemotingConfiguration.RegisterWellKnownClientType(typeof(IExecutor), "Executors.soap");
+            RemotingConfiguration.RegisterWellKnownClientType(typeof(IExecutor), "Executors.soap");
 
             RemotingConfiguration.RegisterWellKnownClientType(typeof(IJob), "Job.soap");
             //RemotingConfiguration.RegisterActivatedServiceType(typeof(IJob));

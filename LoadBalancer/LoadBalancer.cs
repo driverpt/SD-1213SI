@@ -9,20 +9,22 @@ namespace TrabalhoPratico1
 {
     public class LoadBalancer : MarshalByRefObject, ILoadBalancer
     {
-        private static readonly List<IJob> JobList = new List<IJob>(); 
+        private static readonly List<IJob> JobList = new List<IJob>();
 
-        private static readonly List<IExecutor> Executors = new List<IExecutor>();
+        private static readonly List<string> Executors = new List<string>();
 
         private static volatile int _orderNumber = 0;
 
-        public void RegisterExecutor(IExecutor executor)
+        public void RegisterExecutor(string executorUri)
         {
-            Executors.Add(executor);
+            Console.WriteLine("New Executor has arrived");
+            Executors.Add(executorUri);
+            Console.WriteLine("New Executor has been registered: {0}", executorUri);
         }
 
-        public void UnregisterExecutor(IExecutor executor)
+        public void UnregisterExecutor(string executorUri)
         {
-            Executors.Remove(executor);
+            Executors.Remove(executorUri);
         }
 
         public IJob ExecuteJob(string executable, string arguments, Action callback=null)
@@ -31,13 +33,16 @@ namespace TrabalhoPratico1
             var job = new Job(executable, arguments, callback);
 
             JobList.Add(job);
-            IExecutor executor = Executors[_orderNumber % Executors.Count];
-            Func<IJob, bool> del = executor.ExecuteJob;
+            string executorUri = Executors[_orderNumber % Executors.Count];
+
+            IExecutor executor = (IExecutor) Activator.GetObject(typeof (IExecutor), executorUri);
+
+            Func<string, string, string> del = executor.ExecuteJob;
             job.Status = JobStatus.Executing;
-            del.BeginInvoke(job, (result) =>
+            del.BeginInvoke(job.Executable, job.Arguments, (result) =>
             {
-                bool jobResult = del.EndInvoke(result);
-                job.Status = (jobResult) ? JobStatus.Completed : JobStatus.Failed;
+                string jobResult = del.EndInvoke(result);
+                job.Status = (jobResult == JobStatus.Success.ToString()) ? JobStatus.Success : JobStatus.Failed;
                 if (job.Callback != null)
                 {
                     job.Callback();

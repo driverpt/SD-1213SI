@@ -2,6 +2,6 @@ namespace Contracts
 {
     public interface IExecutor
     {
-        bool ExecuteJob(IJob job);
+        string ExecuteJob(string execFileName, string arguments);
     }
 }
