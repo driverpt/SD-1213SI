@@ -44,6 +44,8 @@
     <Compile Include="IExecutor.cs" />
     <Compile Include="IJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemotingHelper.cs" />
+    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
