@@ -1,23 +1,20 @@
+using System;
 using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Http;
-using Contracts;
 
-namespace TrabalhoPratico1
+namespace LoadBalancer
 {
     public class LoadBalancerLauncher
     {
+
+        /// <summary>
+        /// Starts a new load balancer
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main( string[] args )
         {
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(ILoadBalancer), "LoadBalancer.soap", WellKnownObjectMode.Singleton);
-            RemotingConfiguration.RegisterWellKnownClientType(typeof(IJob), "Job.soap");
-            RemotingConfiguration.RegisterWellKnownClientType(typeof(IExecutor), "Executors.soap");
-
-            RemotingConfiguration.RegisterActivatedServiceType(typeof(LoadBalancer));
-            
-            IChannel channel = new HttpChannel(9001);
-            ChannelServices.RegisterChannel(channel, false);
-            
+            RemotingConfiguration.Configure("LoadBalancer.exe.config", false);
+            Console.WriteLine("Load balancer running. Press enter to shutdown.");
+            Console.ReadLine();
         }
     }
 }
