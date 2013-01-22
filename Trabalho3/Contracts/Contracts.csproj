@@ -31,20 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\CentralService\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CentralService\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.Wcf">
-      <HintPath>..\CentralService\packages\Ninject.Extensions.Wcf.3.0.0.5\lib\net45-full\Ninject.Extensions.Wcf.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\CentralService\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />
@@ -58,27 +44,23 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebActivator">
-      <HintPath>..\CentralService\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICentralSupplierService.cs" />
     <Compile Include="IComprasService.cs" />
     <Compile Include="IProductosService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\CentralServiceFault.cs" />
+    <Compile Include="Types\ContestInfo.cs" />
+    <Compile Include="Types\Organization.cs" />
+    <Compile Include="Types\Product.cs" />
+    <Compile Include="Types\ProductFamily.cs" />
+    <Compile Include="Types\Supplier.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CentralService\DomainLayer\DomainLayer.csproj">
-      <Project>{596ECF89-205F-411D-8C5B-E05CFFCB5B6D}</Project>
-      <Name>DomainLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

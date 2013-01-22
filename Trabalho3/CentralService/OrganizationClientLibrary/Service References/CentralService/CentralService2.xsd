@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:6506/CentralService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Contracts.Types" />
+  <xs:element name="SignIn">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignInResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOut">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOutResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterSupplier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="supplier" nillable="true" type="q1:Supplier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterSupplierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterSupplierResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterSupplier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="supplierName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterSupplierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnregisterSupplierResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewProposal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contestId" type="xs:int" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="product" nillable="true" type="q2:Product" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewProposalResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptProposal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contestId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptProposalResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RejectProposal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contextId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RejectProposalResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSupplierInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSupplierInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="GetSupplierInfoResult" nillable="true" type="q3:Supplier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateContest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="endPoint" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="product" nillable="true" type="q4:Product" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateContestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateContestResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPossibleSuppliers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="proposalId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPossibleSuppliersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="GetPossibleSuppliersResult" nillable="true" type="q5:ArrayOfSupplier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostProposal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contestId" type="xs:int" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="product" nillable="true" type="q6:Product" />
+        <xs:element minOccurs="0" name="price" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostProposalResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrganizationInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrganizationInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Contracts.Types" minOccurs="0" name="GetOrganizationInfoResult" nillable="true" type="q7:Organization" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

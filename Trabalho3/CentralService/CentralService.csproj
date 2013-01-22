@@ -57,22 +57,6 @@
       <Private>True</Private>
       <HintPath>packages\Microsoft.Data.Services.Client.5.0.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.Wcf, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Ninject.Extensions.Wcf.3.0.0.5\lib\net45-full\Ninject.Extensions.Wcf.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services" />
@@ -98,37 +82,46 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebActivator, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CentralOrganizationService.svc" />
-    <Content Include="CentralSupplierService.svc" />
-    <Content Include="Global.asax" />
+    <Content Include="CentralService.svc" />
+    <Content Include="Properties\DataSources\Contracts.Types.Supplier.datasource" />
+    <None Include="Service References\ProductsService\ProductosService.disco" />
+    <None Include="Service References\ProductsService\configuration91.svcinfo" />
+    <None Include="Service References\ProductsService\configuration.svcinfo" />
+    <None Include="Service References\ProductsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="CentralOrganizationService.svc.cs">
-      <DependentUpon>CentralOrganizationService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="CentralServiceModule.cs" />
-    <Compile Include="CentralSupplierService.svc.cs">
-      <DependentUpon>CentralSupplierService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
+    <Compile Include="CentralService.svc.cs">
+      <DependentUpon>CentralService.svc</DependentUpon>
     </Compile>
     <Compile Include="SerializableUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ProductsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Service References\ProductsService\ProductosService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsService\ProductosService1.wsdl" />
+    <None Include="Service References\ProductsService\ProductosService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsService\ProductosService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -141,14 +134,16 @@
       <Project>{85d6d13f-0464-47c0-9689-e34103919a2e}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{69963b10-7c8e-48f1-b7c9-1579798263d8}</Project>
-      <Name>DataAccessLayer</Name>
+    <ProjectReference Include="ProductosService\ProductosService.csproj">
+      <Project>{a2c8e12a-80dc-4d24-8e47-2c5694ae9ceb}</Project>
+      <Name>ProductosService</Name>
     </ProjectReference>
-    <ProjectReference Include="DomainLayer\DomainLayer.csproj">
-      <Project>{596ECF89-205F-411D-8C5B-E05CFFCB5B6D}</Project>
-      <Name>DomainLayer</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ProductsService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -163,7 +158,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>37810</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:6506/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

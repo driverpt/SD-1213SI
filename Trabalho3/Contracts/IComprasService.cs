@@ -2,12 +2,19 @@
 {
     using System.ServiceModel;
 
-    using DomainLayer.Types;
+    using Contracts.Types;
 
     [ServiceContract]
     public interface IComprasService
     {
+        [OperationContract(IsOneWay = true)]
+        void PostProposal(int contestId, Product product, Supplier supplier);
+    }
+
+    [ServiceContract]
+    public interface IComprasServiceCentral
+    {
         [OperationContract]
-        void PostProposal(int contestId, Product product, double price);
+        Organization GetOrganizationInfo();
     }
 }

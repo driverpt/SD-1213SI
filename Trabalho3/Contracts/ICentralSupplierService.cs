@@ -3,8 +3,9 @@
     using System.Collections.Generic;
     using System.ServiceModel;
 
-    using DomainLayer.Types;
+    using Contracts.Types;
 
+    // For Testing Purposes
     [ServiceContract]
     public interface IBaseCentralSupplierService
     {
@@ -12,21 +13,24 @@
         List<ProductFamily> GetSupplierProductFamilies(string supplierName);
     }
 
-    [ServiceContract(SessionMode = SessionMode.Required)]
-    public interface ICentralSupplierService : ICentralServiceForDualCommunication
+    [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IProductosServiceCentral))]
+    public interface ICentralSupplierService
     {
         [OperationContract(IsOneWay = false)]
-        bool RegisterSupplier(Supplier supplier);
+        [FaultContract(typeof(CentralServiceFault))]
+        bool RegisterSupplier();
 
         [OperationContract(IsOneWay = false)]
+        [FaultContract(typeof(CentralServiceFault))]
         bool UnregisterSupplier(string supplierName);
     }
 
-    [ServiceContract(SessionMode = SessionMode.Required)]
-    public interface ICentralOrganizationService : ICentralServiceForDualCommunication
+    [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IComprasServiceCentral))]
+    public interface ICentralOrganizationService
     {
         [OperationContract]
-        int CreateContest(string endPoint, Product product);
+        [FaultContract(typeof(CentralServiceFault))]
+        ContestInfoWithSuppliers CreateContest(string endPoint, Product product);
 
         [OperationContract]
         List<Supplier> GetPossibleSuppliers(int proposalId);
